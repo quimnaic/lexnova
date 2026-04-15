@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LexNova Iberia · Soluciones Legales sin Fronteras</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #C9A84C;
+    --gold-light: #E8C97A;
+    --gold-dark: #8B6914;
+    --navy: #0B1C3D;
+    --navy-mid: #162B57;
+    --navy-light: #1E3A6E;
+    --cream: #FAF7F0;
+    --cream-dark: #F0EAD8;
+    --white: #FFFFFF;
+    --text-dark: #0B1C3D;
+    --text-mid: #3A4D6B;
+    --text-light: #7A8FAF;
+    --success: #2D7A4F;
+    --whatsapp: #25D366;
+    --whatsapp-dark: #1DA851;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--text-dark);
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1rem 4vw;
+    background: rgba(11, 28, 61, 0.97);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgba(201,168,76,0.3);
+  }
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem; font-weight: 700;
+    color: var(--gold-light);
+    letter-spacing: 0.02em;
+  }
+  .nav-logo span { color: var(--white); font-weight: 400; }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    color: rgba(255,255,255,0.8); text-decoration: none;
+    font-size: 0.9rem; font-weight: 400; letter-spacing: 0.05em;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--gold-light); }
+  .nav-cta {
+    background: var(--gold); color: var(--navy);
+    padding: 0.55rem 1.4rem; border-radius: 2px;
+    font-weight: 600; font-size: 0.88rem; text-decoration: none;
+    letter-spacing: 0.03em; transition: background 0.2s;
+    white-space: nowrap;
+  }
+  .nav-cta:hover { background: var(--gold-light); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    background: linear-gradient(160deg, var(--navy) 0%, var(--navy-mid) 55%, #1A2E5A 100%);
+    display: grid; place-items: center;
+    padding: 8rem 4vw 5rem;
+    position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23C9A84C' fill-opacity='0.04'%3E%3Cpath d='M50 50c0-5.523 4.477-10 10-10s10 4.477 10 10-4.477 10-10 10c0 5.523-4.477 10-10 10s-10-4.477-10-10 4.477-10 10-10zM10 10c0-5.523 4.477-10 10-10s10 4.477 10 10-4.477 10-10 10c0 5.523-4.477 10-10 10S0 25.523 0 20s4.477-10 10-10z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  }
+  .hero-flag {
+    position: absolute; top: 0; right: 0;
+    width: 45vw; height: 100%;
+    opacity: 0.06;
+    background: repeating-linear-gradient(
+      0deg,
+      #c60b1e 0px, #c60b1e 20%, #f1bf00 20%, #f1bf00 40%, #c60b1e 40%, #c60b1e 60%, #f1bf00 60%, #f1bf00 80%, #c60b1e 80%, #c60b1e 100%
+    );
+    clip-path: polygon(15% 0, 100% 0, 100% 100%, 0% 100%);
+  }
+  .hero-inner {
+    max-width: 900px; text-align: center;
+    position: relative; z-index: 1;
+    animation: fadeUp 0.9s ease both;
+  }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(32px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    background: rgba(201,168,76,0.18); border: 1px solid rgba(201,168,76,0.4);
+    color: var(--gold-light); border-radius: 2px;
+    padding: 0.4rem 1.1rem; font-size: 0.8rem; font-weight: 500;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    margin-bottom: 2rem;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.4rem, 5.5vw, 4.2rem);
+    font-weight: 900; color: var(--white);
+    line-height: 1.12; margin-bottom: 1.5rem;
+  }
+  .hero h1 em { color: var(--gold-light); font-style: normal; }
+  .hero p {
+    font-size: clamp(1rem, 2vw, 1.2rem);
+    color: rgba(255,255,255,0.72);
+    max-width: 640px; margin: 0 auto 3rem;
+    line-height: 1.75; font-weight: 300;
+  }
+  .hero-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+  .btn-wa {
+    display: inline-flex; align-items: center; gap: 0.6rem;
+    background: var(--whatsapp); color: #fff;
+    padding: 0.9rem 2rem; border-radius: 2px;
+    font-weight: 600; font-size: 1rem; text-decoration: none;
+    transition: background 0.2s, transform 0.15s;
+    box-shadow: 0 4px 20px rgba(37,211,102,0.35);
+  }
+  .btn-wa:hover { background: var(--whatsapp-dark); transform: translateY(-2px); }
+  .btn-outline {
+    display: inline-flex; align-items: center; gap: 0.6rem;
+    border: 1.5px solid rgba(201,168,76,0.6); color: var(--gold-light);
+    padding: 0.9rem 2rem; border-radius: 2px;
+    font-weight: 500; font-size: 1rem; text-decoration: none;
+    transition: border-color 0.2s, color 0.2s, transform 0.15s;
+  }
+  .btn-outline:hover { border-color: var(--gold-light); color: #fff; transform: translateY(-2px); }
+
+  /* ── STATS BAR ── */
+  .stats-bar {
+    background: var(--gold);
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    text-align: center; padding: 0;
+  }
+  .stat-item {
+    padding: 1.4rem 1rem;
+    border-right: 1px solid rgba(11,28,61,0.2);
+  }
+  .stat-item:last-child { border-right: none; }
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.9rem; font-weight: 700; color: var(--navy);
+    line-height: 1.1;
+  }
+  .stat-label { font-size: 0.78rem; color: var(--navy-mid); font-weight: 500; margin-top: 0.2rem; letter-spacing: 0.03em; }
+
+  /* ── SECTION BASE ── */
+  section { padding: 6rem 4vw; }
+  .section-tag {
+    display: inline-block;
+    font-size: 0.75rem; font-weight: 600; letter-spacing: 0.15em;
+    text-transform: uppercase; color: var(--gold-dark);
+    border-left: 3px solid var(--gold); padding-left: 0.75rem;
+    margin-bottom: 1rem;
+  }
+  h2.section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+    font-weight: 700; color: var(--navy);
+    line-height: 1.2; margin-bottom: 1rem;
+  }
+  .section-sub {
+    color: var(--text-mid); font-size: 1.05rem;
+    line-height: 1.75; max-width: 580px;
+  }
+
+  /* ── REGULARIZACIÓN 2026 ── */
+  .reg-section { background: var(--white); }
+  .reg-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 4rem; align-items: start; max-width: 1200px; margin: 3rem auto 0;
+  }
+  .reg-highlight {
+    background: var(--navy);
+    border-radius: 4px; padding: 2.5rem;
+    position: relative; overflow: hidden;
+  }
+  .reg-highlight::before {
+    content: '2026';
+    position: absolute; right: -1rem; top: -1.5rem;
+    font-family: 'Playfair Display', serif;
+    font-size: 9rem; font-weight: 900;
+    color: rgba(201,168,76,0.08);
+    line-height: 1;
+  }
+  .reg-highlight h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem; color: var(--gold-light);
+    margin-bottom: 1.5rem;
+  }
+  .reg-item {
+    display: flex; gap: 1rem;
+    margin-bottom: 1.4rem; align-items: flex-start;
+  }
+  .reg-dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--gold); flex-shrink: 0; margin-top: 0.35rem;
+  }
+  .reg-item p { color: rgba(255,255,255,0.82); font-size: 0.95rem; line-height: 1.65; }
+  .reg-item strong { color: var(--gold-light); font-weight: 500; }
+  .reg-cards { display: flex; flex-direction: column; gap: 1.2rem; }
+  .reg-card {
+    border: 1.5px solid var(--cream-dark);
+    border-radius: 4px; padding: 1.5rem;
+    background: var(--cream);
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .reg-card:hover { border-color: var(--gold); transform: translateX(4px); }
+  .reg-card h4 { font-size: 1rem; font-weight: 600; color: var(--navy); margin-bottom: 0.4rem; }
+  .reg-card p { color: var(--text-mid); font-size: 0.9rem; line-height: 1.6; }
+
+  /* ── SERVICIOS ── */
+  .services-section { background: var(--cream); }
+  .services-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem; max-width: 1200px; margin: 3rem auto 0;
+  }
+  .service-card {
+    background: var(--white);
+    border: 1px solid var(--cream-dark);
+    border-radius: 4px; padding: 2rem 1.8rem;
+    position: relative; overflow: hidden;
+    transition: transform 0.25s, box-shadow 0.25s;
+  }
+  .service-card::after {
+    content: ''; position: absolute;
+    bottom: 0; left: 0; right: 0; height: 3px;
+    background: var(--gold);
+    transform: scaleX(0); transform-origin: left;
+    transition: transform 0.3s;
+  }
+  .service-card:hover { transform: translateY(-6px); box-shadow: 0 12px 40px rgba(11,28,61,0.12); }
+  .service-card:hover::after { transform: scaleX(1); }
+  .service-icon {
+    width: 52px; height: 52px; border-radius: 4px;
+    background: var(--navy); display: grid; place-items: center;
+    margin-bottom: 1.3rem; font-size: 1.5rem;
+  }
+  .service-card h3 { font-size: 1.1rem; font-weight: 600; color: var(--navy); margin-bottom: 0.7rem; }
+  .service-card p { color: var(--text-mid); font-size: 0.9rem; line-height: 1.65; margin-bottom: 1.4rem; }
+  .service-link {
+    display: inline-flex; align-items: center; gap: 0.4rem;
+    color: var(--gold-dark); font-size: 0.88rem; font-weight: 600;
+    text-decoration: none; letter-spacing: 0.02em;
+  }
+  .service-link:hover { color: var(--navy); }
+
+  /* ── ABOGADOS ── */
+  .lawyers-section { background: var(--navy); }
+  .lawyers-section .section-tag { color: var(--gold-light); border-color: var(--gold); }
+  .lawyers-section h2.section-title { color: var(--white); }
+  .lawyers-section .section-sub { color: rgba(255,255,255,0.6); }
+  .lawyers-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem; max-width: 1200px; margin: 3rem auto 0;
+  }
+  .lawyer-card {
+    background: var(--navy-light);
+    border: 1px solid rgba(201,168,76,0.2);
+    border-radius: 4px; padding: 2rem 1.8rem;
+    text-align: center;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .lawyer-card:hover { border-color: var(--gold); transform: translateY(-4px); }
+  .lawyer-avatar {
+    width: 80px; height: 80px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--gold-dark), var(--gold));
+    display: grid; place-items: center;
+    margin: 0 auto 1.2rem;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem; font-weight: 700; color: var(--white);
+  }
+  .lawyer-card h3 { color: var(--white); font-size: 1.1rem; font-weight: 600; margin-bottom: 0.3rem; }
+  .lawyer-specialty { color: var(--gold-light); font-size: 0.82rem; font-weight: 500; letter-spacing: 0.05em; margin-bottom: 0.9rem; }
+  .lawyer-card p { color: rgba(255,255,255,0.65); font-size: 0.88rem; line-height: 1.6; margin-bottom: 1.4rem; }
+  .lawyer-exp {
+    display: inline-block;
+    background: rgba(201,168,76,0.15); color: var(--gold-light);
+    padding: 0.3rem 0.8rem; border-radius: 2px;
+    font-size: 0.78rem; font-weight: 500;
+    margin-bottom: 1.2rem;
+  }
+
+  /* ── PROCESO ── */
+  .process-section { background: var(--cream); }
+  .process-steps {
+    display: grid; grid-template-columns: repeat(5, 1fr);
+    gap: 0; max-width: 1200px; margin: 3rem auto 0;
+    position: relative;
+  }
+  .process-steps::before {
+    content: '';
+    position: absolute; top: 2rem; left: 10%; right: 10%;
+    height: 2px; background: linear-gradient(to right, var(--gold), var(--cream-dark));
+    z-index: 0;
+  }
+  .step {
+    text-align: center; padding: 0 1rem;
+    position: relative; z-index: 1;
+  }
+  .step-num {
+    width: 4rem; height: 4rem; border-radius: 50%;
+    background: var(--navy); border: 3px solid var(--gold);
+    display: grid; place-items: center;
+    margin: 0 auto 1.2rem;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem; font-weight: 700; color: var(--gold-light);
+  }
+  .step h4 { font-size: 0.95rem; font-weight: 600; color: var(--navy); margin-bottom: 0.5rem; }
+  .step p { font-size: 0.83rem; color: var(--text-mid); line-height: 1.55; }
+
+  /* ── ANTECEDENTES ── */
+  .apostille-section { background: var(--white); }
+  .apostille-inner {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 4rem; max-width: 1200px; margin: 3rem auto 0; align-items: center;
+  }
+  .apostille-visual {
+    background: var(--navy);
+    border-radius: 4px; padding: 3rem 2.5rem;
+    border-left: 5px solid var(--gold);
+  }
+  .apostille-visual h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem; color: var(--gold-light); margin-bottom: 1.5rem;
+  }
+  .doc-list { list-style: none; }
+  .doc-list li {
+    display: flex; align-items: center; gap: 0.8rem;
+    color: rgba(255,255,255,0.8); font-size: 0.92rem;
+    padding: 0.7rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+  .doc-list li:last-child { border-bottom: none; }
+  .doc-check {
+    width: 22px; height: 22px; border-radius: 50%;
+    background: rgba(201,168,76,0.2); border: 1px solid var(--gold);
+    display: grid; place-items: center;
+    flex-shrink: 0; color: var(--gold); font-size: 0.7rem;
+  }
+  .apostille-info h3 { font-family: 'Playfair Display', serif; font-size: 1.6rem; color: var(--navy); margin-bottom: 1rem; }
+  .apostille-info p { color: var(--text-mid); line-height: 1.75; margin-bottom: 1.2rem; }
+  .info-box {
+    background: var(--cream); border: 1px solid var(--cream-dark);
+    border-left: 3px solid var(--gold); border-radius: 2px;
+    padding: 1.2rem 1.5rem; margin-bottom: 2rem;
+  }
+  .info-box p { color: var(--text-dark); font-size: 0.92rem; margin: 0; font-weight: 500; }
+
+  /* ── FAQ ── */
+  .faq-section { background: var(--cream); }
+  .faq-inner { max-width: 800px; margin: 3rem auto 0; }
+  .faq-item {
+    border: 1px solid var(--cream-dark);
+    border-radius: 4px; background: var(--white);
+    margin-bottom: 0.8rem; overflow: hidden;
+  }
+  .faq-q {
+    width: 100%; background: none; border: none;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1.3rem 1.5rem; cursor: pointer;
+    text-align: left; gap: 1rem;
+  }
+  .faq-q span {
+    font-size: 0.97rem; font-weight: 600; color: var(--navy); flex: 1;
+  }
+  .faq-arrow {
+    width: 28px; height: 28px; border-radius: 50%;
+    background: var(--cream); border: 1px solid var(--cream-dark);
+    display: grid; place-items: center; flex-shrink: 0;
+    color: var(--gold-dark); font-size: 0.9rem;
+    transition: transform 0.3s, background 0.2s;
+  }
+  .faq-item.open .faq-arrow { transform: rotate(180deg); background: var(--navy); color: var(--gold-light); }
+  .faq-a {
+    max-height: 0; overflow: hidden;
+    transition: max-height 0.4s ease, padding 0.3s;
+    padding: 0 1.5rem;
+  }
+  .faq-item.open .faq-a { max-height: 300px; padding: 0 1.5rem 1.3rem; }
+  .faq-a p { color: var(--text-mid); font-size: 0.92rem; line-height: 1.7; }
+
+  /* ── CTA ── */
+  .cta-section {
+    background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 100%);
+    text-align: center; padding: 7rem 4vw;
+    position: relative; overflow: hidden;
+  }
+  .cta-section::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none'%3E%3Cg fill='%23C9A84C' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  }
+  .cta-inner { position: relative; z-index: 1; }
+  .cta-section h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 4vw, 3rem);
+    color: var(--white); font-weight: 700; margin-bottom: 1rem;
+  }
+  .cta-section h2 em { color: var(--gold-light); font-style: normal; }
+  .cta-section p { color: rgba(255,255,255,0.7); font-size: 1.05rem; margin-bottom: 2.5rem; }
+  .cta-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+  .btn-wa-lg {
+    display: inline-flex; align-items: center; gap: 0.7rem;
+    background: var(--whatsapp); color: #fff;
+    padding: 1.1rem 2.4rem; border-radius: 2px;
+    font-weight: 700; font-size: 1.1rem; text-decoration: none;
+    transition: background 0.2s, transform 0.15s;
+    box-shadow: 0 6px 28px rgba(37,211,102,0.4);
+  }
+  .btn-wa-lg:hover { background: var(--whatsapp-dark); transform: translateY(-2px); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #070F20; padding: 3rem 4vw 2rem;
+    border-top: 1px solid rgba(201,168,76,0.2);
+  }
+  .footer-inner {
+    display: grid; grid-template-columns: 2fr 1fr 1fr;
+    gap: 3rem; max-width: 1200px; margin: 0 auto;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+  }
+  .footer-brand .nav-logo { display: block; margin-bottom: 1rem; font-size: 1.3rem; }
+  .footer-brand p { color: rgba(255,255,255,0.45); font-size: 0.88rem; line-height: 1.7; }
+  footer h4 { color: var(--gold-light); font-size: 0.82rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 1rem; }
+  footer ul { list-style: none; }
+  footer ul li { margin-bottom: 0.6rem; }
+  footer ul li a { color: rgba(255,255,255,0.5); text-decoration: none; font-size: 0.88rem; transition: color 0.2s; }
+  footer ul li a:hover { color: var(--gold-light); }
+  .footer-bottom {
+    max-width: 1200px; margin: 1.5rem auto 0;
+    display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;
+  }
+  .footer-bottom p { color: rgba(255,255,255,0.3); font-size: 0.8rem; }
+
+  /* ── WHATSAPP FLOAT ── */
+  .wa-float {
+    position: fixed; bottom: 2rem; right: 2rem; z-index: 200;
+    width: 60px; height: 60px; border-radius: 50%;
+    background: var(--whatsapp);
+    display: grid; place-items: center;
+    box-shadow: 0 4px 20px rgba(37,211,102,0.5);
+    text-decoration: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+    animation: pulse 2.5s infinite;
+  }
+  .wa-float:hover { transform: scale(1.1); box-shadow: 0 6px 28px rgba(37,211,102,0.7); }
+  @keyframes pulse {
+    0%, 100% { box-shadow: 0 4px 20px rgba(37,211,102,0.5); }
+    50% { box-shadow: 0 4px 32px rgba(37,211,102,0.75); }
+  }
+  .wa-float svg { width: 32px; height: 32px; fill: white; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    .stats-bar { grid-template-columns: repeat(2, 1fr); }
+    .stat-item:nth-child(2) { border-right: none; }
+    .reg-grid, .apostille-inner { grid-template-columns: 1fr; }
+    .services-grid, .lawyers-grid { grid-template-columns: 1fr 1fr; }
+    .process-steps { grid-template-columns: 1fr 1fr; gap: 2rem; }
+    .process-steps::before { display: none; }
+    .nav-links { display: none; }
+    .footer-inner { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 600px) {
+    .services-grid, .lawyers-grid { grid-template-columns: 1fr; }
+    .stats-bar { grid-template-columns: 1fr 1fr; }
+    .process-steps { grid-template-columns: 1fr; }
+    .footer-inner { grid-template-columns: 1fr; }
+    .footer-bottom { flex-direction: column; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Lex<span>Nova</span> Iberia</div>
+  <ul class="nav-links">
+    <li><a href="#regularizacion">Regularización</a></li>
+    <li><a href="#servicios">Servicios</a></li>
+    <li><a href="#abogados">Abogados</a></li>
+    <li><a href="#antecedentes">Antecedentes</a></li>
+    <li><a href="#faq">FAQ</a></li>
+  </ul>
+  <a href="https://wa.me/34661682220?text=Hola,%20quiero%20información%20sobre%20la%20regularización%202026%20en%20España" target="_blank" class="nav-cta">Consulta Gratis ↗</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-flag"></div>
+  <div class="hero-inner">
+    <div class="hero-badge">⚖ Regularización Extraordinaria España</div>
+    <h1>Tu futuro en España<br>comienza <em>con asesoría experta</em></h1>
+    <p>Abogados especializados en extranjería te acompañan en cada etapa del proceso migratorio. De la consulta inicial a tu residencia legal, sin sorpresas.</p>
+    <div class="hero-btns">
+      <a href="https://wa.me/34661682220?text=Hola,%20quiero%20información%20sobre%20la%20regularización%202026" target="_blank" class="btn-wa">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Consulta gratis por WhatsApp
+      </a>
+      <a href="#regularizacion" class="btn-outline">Ver Regularización 2026 →</a>
+    </div>
+  </div>
+</section>
+
+<!-- STATS BAR -->
+<div class="stats-bar">
+  <div class="stat-item">
+    <div class="stat-num">+500</div>
+    <div class="stat-label">Casos resueltos</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">12+</div>
+    <div class="stat-label">Años de experiencia</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">98%</div>
+    <div class="stat-label">Tasa de éxito</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">24h</div>
+    <div class="stat-label">Respuesta garantizada</div>
+  </div>
+</div>
+
+<!-- REGULARIZACIÓN 2026 -->
+<section class="reg-section" id="regularizacion">
+  <div style="max-width:1200px;margin:0 auto;">
+    <div class="section-tag">Regularización Extraordinaria</div>
+    <h2 class="section-title">España 2026: Tu oportunidad<br>de regularizarte</h2>
+    <p class="section-sub">El gobierno español ha abierto un proceso extraordinario de regularización que beneficia a miles de migrantes. Conoce los requisitos y actúa antes de que cierren los plazos.</p>
+    <div class="reg-grid">
+      <div class="reg-highlight">
+        <h3>¿Qué contempla la Regularización 2026?</h3>
+        <div class="reg-item">
+          <div class="reg-dot"></div>
+          <p><strong>Arraigo social ampliado:</strong> Reducción del período mínimo de permanencia en España para solicitar autorización de residencia.</p>
+        </div>
+        <div class="reg-item">
+          <div class="reg-dot"></div>
+          <p><strong>Arraigo laboral:</strong> Posibilidad de acreditar vínculos laborales previos para obtener autorización de trabajo y residencia.</p>
+        </div>
+        <div class="reg-item">
+          <div class="reg-dot"></div>
+          <p><strong>Reagrupación familiar acelerada:</strong> Procedimientos más ágiles para reunir a tu familia en territorio español.</p>
+        </div>
+        <div class="reg-item">
+          <div class="reg-dot"></div>
+          <p><strong>Protección internacional:</strong> Nuevas vías de protección para nacionales de países en situación de crisis humanitaria.</p>
+        </div>
+        <div class="reg-item">
+          <div class="reg-dot"></div>
+          <p><strong>Digitalización del proceso:</strong> Trámites telemáticos para agilizar la resolución y reducir tiempos de espera.</p>
+        </div>
+        <br>
+        <a href="https://wa.me/34661682220?text=Quiero%20saber%20si%20califico%20para%20la%20regularización%202026" target="_blank" class="btn-wa" style="font-size:0.92rem;padding:0.75rem 1.5rem;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Verificar si califico
+        </a>
+      </div>
+      <div class="reg-cards">
+        <div class="reg-card">
+          <h4>📅 Plazos importantes 2026</h4>
+          <p>Los períodos de presentación de solicitudes son limitados. Es fundamental actuar con anticipación para reunir la documentación requerida y no perder la oportunidad.</p>
+        </div>
+        <div class="reg-card">
+          <h4>📋 Requisitos generales</h4>
+          <p>Permanencia mínima acreditable en España, ausencia de antecedentes penales en España y país de origen, documentación de identidad válida y, en algunos casos, oferta de trabajo o arraigo familiar.</p>
+        </div>
+        <div class="reg-card">
+          <h4>🌍 Países beneficiados</h4>
+          <p>El proceso está abierto a nacionales de todos los países con especial atención a Colombia, Venezuela, Ecuador, Perú, Bolivia, Honduras, El Salvador, Guatemala y República Dominicana.</p>
+        </div>
+        <div class="reg-card">
+          <h4>⚡ ¿Por qué actuar ahora?</h4>
+          <p>Las cuotas de regularización son limitadas y los plazos se cierran. Cada día de retraso puede significar perder tu oportunidad de regularización. Nuestros abogados te guían desde el primer día.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICIOS -->
+<section class="services-section" id="servicios">
+  <div style="max-width:1200px;margin:0 auto;">
+    <div class="section-tag">Nuestros Servicios</div>
+    <h2 class="section-title">Asesoramiento jurídico<br>de principio a fin</h2>
+    <p class="section-sub">Cubrimos todos los trámites migratorios con la precisión y el compromiso que mereces. Sin letra pequeña, sin sorpresas.</p>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-icon">⚖️</div>
+        <h3>Asesoría Jurídica Integral</h3>
+        <p>Evaluación completa de tu situación migratoria, análisis de opciones legales y estrategia personalizada desde el primer día de consulta.</p>
+        <a href="https://wa.me/34661682220?text=Quiero%20asesoría%20jurídica%20migratoria" target="_blank" class="service-link">Consultar ahora →</a>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🏛️</div>
+        <h3>Trámite de Nacionalidad</h3>
+        <p>Gestión completa del proceso de naturalización: desde la recopilación de documentos hasta la jura de bandera. Te acompañamos en cada paso.</p>
+        <a href="https://wa.me/34661682220?text=Quiero%20información%20sobre%20el%20trámite%20de%20nacionalidad" target="_blank" class="service-link">Consultar ahora →</a>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">📜</div>
+        <h3>Antecedentes Apostillados</h3>
+        <p>Gestión y legalización de certificados de antecedentes penales de tu país de origen con apostilla de La Haya para uso en España.</p>
+        <a href="https://wa.me/34661682220?text=Necesito%20gestionar%20antecedentes%20apostillados" target="_blank" class="service-link">Consultar ahora →</a>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🏠</div>
+        <h3>Arraigo Social y Laboral</h3>
+        <p>Preparación y presentación de solicitudes de arraigo social, laboral y familiar. Maximizamos tus posibilidades de resolución favorable.</p>
+        <a href="https://wa.me/34661682220?text=Quiero%20información%20sobre%20arraigo" target="_blank" class="service-link">Consultar ahora →</a>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">👨‍👩‍👧</div>
+        <h3>Reagrupación Familiar</h3>
+        <p>Reunificación legal de tu familia en España. Gestionamos todos los permisos necesarios para cónyuge, hijos y otros familiares dependientes.</p>
+        <a href="https://wa.me/34661682220?text=Quiero%20reagrupar%20a%20mi%20familia%20en%20España" target="_blank" class="service-link">Consultar ahora →</a>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">📁</div>
+        <h3>Recursos y Apelaciones</h3>
+        <p>Defensa legal ante resoluciones desfavorables. Presentamos recursos administrativos y contencioso-administrativos con sólida argumentación jurídica.</p>
+        <a href="https://wa.me/34661682220?text=Necesito%20interponer%20un%20recurso%20migratorio" target="_blank" class="service-link">Consultar ahora →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+ 	
+<!-- PROCESO -->
+<section class="process-section" id="proceso">
+  <div style="max-width:1200px;margin:0 auto;text-align:center;">
+    <div class="section-tag">Cómo Trabajamos</div>
+    <h2 class="section-title">Tu proceso migratorio<br>paso a paso</h2>
+    <p class="section-sub" style="margin:0 auto 0;">Transparencia total desde el primer contacto hasta la resolución de tu caso.</p>
+    <div class="process-steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <h4>Consulta inicial</h4>
+        <p>Evaluamos tu situación migratoria de forma gratuita y determinamos la mejor vía legal.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <h4>Diagnóstico legal</h4>
+        <p>Nuestro abogado asignado diseña la estrategia jurídica más sólida para tu caso.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <h4>Documentación</h4>
+        <p>Te guiamos en la recopilación y apostillado de todos los documentos necesarios.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <h4>Presentación</h4>
+        <p>Preparamos y presentamos tu expediente ante las autoridades de extranjería.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">5</div>
+        <h4>Resolución</h4>
+        <p>Hacemos seguimiento activo hasta obtener la resolución favorable de tu caso.</p>
+      </div>
+    </div>
+    <br><br>
+    <a href="https://wa.me/34661682220?text=Quiero%20comenzar%20mi%20proceso%20migratorio%20en%20España" target="_blank" class="btn-wa" style="font-size:1rem;padding:0.9rem 2rem;">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      Iniciar mi proceso ahora
+    </a>
+  </div>
+</section>
+
+<!-- ANTECEDENTES APOSTILLADOS -->
+<section class="apostille-section" id="antecedentes">
+  <div style="max-width:1200px;margin:0 auto;">
+    <div class="apostille-inner">
+      <div class="apostille-visual">
+        <h3>Documentos que gestionamos</h3>
+        <ul class="doc-list">
+          <li><div class="doc-check">✓</div> Certificado de antecedentes penales del país de origen</li>
+          <li><div class="doc-check">✓</div> Apostilla de La Haya para uso en España</li>
+          <li><div class="doc-check">✓</div> Certificado de nacimiento apostillado</li>
+          <li><div class="doc-check">✓</div> Certificado de matrimonio / estado civil</li>
+          <li><div class="doc-check">✓</div> Títulos académicos homologados</li>
+          <li><div class="doc-check">✓</div> Documentos notariales y poderes</li>
+          <li><div class="doc-check">✓</div> Traducciones juradas certificadas</li>
+          <li><div class="doc-check">✓</div> Certificados de empadronamiento</li>
+        </ul>
+      </div>
+      <div class="apostille-info">
+        <div class="section-tag">Documentación Legal</div>
+        <h3>Antecedentes apostillados sin complicaciones</h3>
+        <p>Uno de los requisitos más críticos en cualquier trámite migratorio es la presentación de certificados de antecedentes penales debidamente apostillados. Un error en este paso puede retrasar o invalidar toda tu solicitud.</p>
+        <p>Nuestro equipo gestiona la obtención y legalización de tus documentos directamente con las autoridades de tu país de origen, con plazos claros y seguimiento constante.</p>
+        <div class="info-box">
+          <p>⚠️ Los antecedentes tienen una validez de 3 meses desde su expedición. Es fundamental calcular bien los tiempos para que coincidan con la presentación de tu expediente.</p>
+        </div>
+        <a href="https://wa.me/34661682220?text=Necesito%20gestionar%20mis%20antecedentes%20apostillados%20para%20España" target="_blank" class="btn-wa" style="font-size:0.95rem;">
+          <svg width="19" height="19" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Gestionar mis antecedentes
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq-section" id="faq">
+  <div style="max-width:1200px;margin:0 auto;">
+    <div style="text-align:center;margin-bottom:0;">
+      <div class="section-tag" style="display:inline-block;">Preguntas Frecuentes</div>
+      <h2 class="section-title">Todo lo que necesitas saber</h2>
+      <p class="section-sub" style="margin:0 auto;">Resolvemos las dudas más comunes sobre el proceso migratorio en España.</p>
+    </div>
+    <div class="faq-inner">
+      <div class="faq-item open">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span>¿Qué es la regularización extraordinaria España 2026?</span>
+          <div class="faq-arrow">▾</div>
+        </button>
+        <div class="faq-a">
+          <p>Es un proceso impulsado por el gobierno español que permite a personas en situación irregular acreditar su permanencia en el país y obtener un permiso de residencia y trabajo. Contempla múltiples vías: arraigo social, laboral, familiar y protección temporal. Es una oportunidad única para regularizar tu situación de forma legal y definitiva.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span>¿Cuánto tiempo debo llevar viviendo en España para aplicar?</span>
+          <div class="faq-arrow">▾</div>
+        </button>
+        <div class="faq-a">
+          <p>Depende de la vía de regularización. Para el arraigo social generalmente se requieren 3 años de permanencia acreditable. Para arraigo laboral, puede ser menos tiempo si se demuestra relación laboral previa. El arraigo familiar puede presentarse antes dependiendo del vínculo. Nuestros abogados analizan tu caso concreto para determinar la vía más rápida.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span>¿Puedo aplicar si tengo antecedentes penales?</span>
+          <div class="faq-arrow">▾</div>
+        </button>
+        <div class="faq-a">
+          <p>La ausencia de antecedentes penales en España y en el país de origen es un requisito fundamental. Si tienes antecedentes, no todo está perdido: dependiendo del tipo de infracción, la fecha y la condena, existen posibilidades de cancelación de antecedentes. Consulta con nuestros abogados para evaluar tu situación específica.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span>¿Cuánto tiempo tarda el trámite de nacionalidad española?</span>
+          <div class="faq-arrow">▾</div>
+        </button>
+        <div class="faq-a">
+          <p>El proceso de nacionalidad por residencia puede tardar entre 1 y 3 años dependiendo del volumen de solicitudes y la correcta presentación de tu expediente. Para iberoamericanos, el requisito de residencia legal previa es de 2 años. Para otros nacionales, generalmente 10 años. Un expediente bien preparado reduce significativamente los tiempos de resolución.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span>¿Cómo obtengo mis antecedentes apostillados desde el exterior?</span>
+          <div class="faq-arrow">▾</div>
+        </button>
+        <div class="faq-a">
+          <p>El proceso varía según el país. Generalmente implica solicitar el certificado de antecedentes penales en tu país de origen (puede hacerse de forma presencial o mediante un representante), luego tramitar la apostilla de La Haya ante la autoridad competente de ese país. Nuestro despacho gestiona todo el proceso con corresponsales en Colombia, Venezuela, Ecuador, Perú y más países.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span>¿Qué pasa si mi solicitud es denegada?</span>
+          <div class="faq-arrow">▾</div>
+        </button>
+        <div class="faq-a">
+          <p>Una denegación no es el fin del proceso. Existe la posibilidad de interponer un recurso de alzada ante la misma administración o un recurso contencioso-administrativo ante los tribunales. Nuestros abogados analizan la resolución, identifican errores o argumentos no valorados, y presentan la defensa más sólida posible para revertir la decisión.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span>¿Puedo trabajar mientras tramito mi regularización?</span>
+          <div class="faq-arrow">▾</div>
+        </button>
+        <div class="faq-a">
+          <p>Durante el proceso de arraigo laboral o social, en algunos casos es posible solicitar una autorización provisional de trabajo. Esta situación depende de factores específicos de tu caso. Te recomendamos no trabajar sin autorización para no comprometer tu expediente. Consulta con nuestros abogados las opciones legales disponibles en tu situación concreta.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span>¿Cuáles son los honorarios por el servicio legal?</span>
+          <div class="faq-arrow">▾</div>
+        </button>
+        <div class="faq-a">
+          <p>Los honorarios varían según la complejidad del caso y los trámites requeridos. Ofrecemos una consulta inicial gratuita donde evaluamos tu situación y te proporcionamos un presupuesto detallado sin compromiso. Trabajamos con planes de pago flexibles para que el coste no sea una barrera para tu regularización. Contáctanos por WhatsApp para más información.</p>
+        </div>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:2.5rem;">
+      <p style="color:var(--text-mid);margin-bottom:1rem;">¿Tu pregunta no está aquí? Escríbenos directamente.</p>
+      <a href="https://wa.me/34661682220?text=Tengo%20una%20pregunta%20sobre%20mi%20situación%20migratoria%20en%20España" target="_blank" class="btn-wa">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Hacer mi consulta por WhatsApp
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="cta-section">
+  <div class="cta-inner">
+    <h2>Tu residencia legal en España<br><em>está a un mensaje de distancia</em></h2>
+    <p>Consulta gratuita · Sin compromiso · Respuesta en menos de 24 horas</p>
+    <div class="cta-btns">
+      <a href="https://wa.me/34661682220?text=Hola,%20quiero%20comenzar%20mi%20trámite%20migratorio%20en%20España" target="_blank" class="btn-wa-lg">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Empezar ahora — Es gratis
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="nav-logo">Lex<span>Migra</span> España</div>
+      <p>Despacho de abogados especializado en derecho de extranjería e inmigración. Ayudamos a migrantes a construir su futuro legal en España desde 2012.</p>
+    </div>
+    <div>
+      <h4>Servicios</h4>
+      <ul>
+        <li><a href="https://wa.me/34661682220?text=Regularización%202026" target="_blank">Regularización 2026</a></li>
+        <li><a href="https://wa.me/34661682220?text=Trámite%20de%20nacionalidad" target="_blank">Trámite de nacionalidad</a></li>
+        <li><a href="https://wa.me/34661682220?text=Antecedentes%20apostillados" target="_blank">Antecedentes apostillados</a></li>
+        <li><a href="https://wa.me/34661682220?text=Arraigo%20social" target="_blank">Arraigo social y laboral</a></li>
+        <li><a href="https://wa.me/34661682220?text=Reagrupación%20familiar" target="_blank">Reagrupación familiar</a></li>
+        <li><a href="https://wa.me/34661682220?text=Recursos%20y%20apelaciones" target="_blank">Recursos y apelaciones</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Contacto</h4>
+      <ul>
+        <li><a href="https://wa.me/34661682220" target="_blank">WhatsApp: +34 600 000 000</a></li>
+        <li><a href="mailto:info@lexmigraespana.com">info@lexmigraespana.com</a></li>
+        <li><a href="#">Madrid · España</a></li>
+        <li style="margin-top:1rem;"><a href="#faq">Preguntas frecuentes</a></li>
+        <li><a href="#">Política de privacidad</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 LexMigra España · Todos los derechos reservados · Colegio de Abogados de Madrid</p>
+    <p>Este sitio no constituye asesoramiento legal. Consulta con nuestros abogados tu caso concreto.</p>
+  </div>
+</footer>
+
+<!-- WHATSAPP FLOAT -->
+<a href="https://wa.me/34661682220?text=Hola,%20necesito%20información%20sobre%20migraciones%20a%20España" target="_blank" class="wa-float" title="Chatea por WhatsApp">
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+  </svg>
+</a>
+
+<script>
+function toggleFaq(btn) {
+  const item = btn.closest('.faq-item');
+  const isOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(el => el.classList.remove('open'));
+  if (!isOpen) item.classList.add('open');
+}
+</script>
+
+</body>
+</html>
