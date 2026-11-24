@@ -1746,7 +1746,150 @@
       .tab-btn { justify-content: center; width: 100%; }
       .top-bar-spain { flex-direction: column; text-align: center; justify-content: center; }
     }
+
+    /* ── SELECTOR DE IDIOMAS & RTL MULTI-IDIOMA ── */
+    .lang-selector-dropdown {
+      position: relative;
+      display: inline-block;
+      flex-shrink: 0;
+    }
+    .lang-current-btn {
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(241, 191, 0, 0.4);
+      color: #FFFFFF;
+      padding: 0.5rem 0.95rem;
+      border-radius: var(--radius-full);
+      font-family: inherit;
+      font-size: 0.86rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      transition: all 0.2s ease;
+      backdrop-filter: blur(8px);
+    }
+    .lang-current-btn:hover {
+      background: rgba(241, 191, 0, 0.2);
+      border-color: var(--gold-light);
+      color: var(--gold-light);
+    }
+    .lang-menu-list {
+      display: none;
+      position: absolute;
+      top: calc(100% + 8px);
+      right: 0;
+      background: #091325;
+      border: 1.5px solid rgba(241, 191, 0, 0.4);
+      border-radius: var(--radius-md);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
+      padding: 0.5rem;
+      z-index: 2500;
+      min-width: 175px;
+      backdrop-filter: blur(16px);
+    }
+    .lang-menu-list.show {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+      animation: fadeIn 0.2s ease forwards;
+    }
+    .lang-opt-btn {
+      background: none;
+      border: none;
+      color: #CFDCED;
+      font-family: inherit;
+      font-size: 0.88rem;
+      font-weight: 600;
+      padding: 0.55rem 0.8rem;
+      text-align: left;
+      border-radius: 8px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      transition: all 0.15s ease;
+      width: 100%;
+    }
+    .lang-opt-btn:hover, .lang-opt-btn.active {
+      background: rgba(241, 191, 0, 0.18);
+      color: var(--gold-light);
+    }
+    .lang-opt-btn .opt-flag {
+      font-size: 1.15rem;
+    }
+
+    /* RTL Support for Arabic */
+    [dir="rtl"] {
+      direction: rtl;
+      text-align: right;
+    }
+    [dir="rtl"] .top-bar-left, [dir="rtl"] .top-bar-right {
+      flex-direction: row-reverse;
+    }
+    [dir="rtl"] .brand-logo-wrap {
+      flex-direction: row-reverse;
+    }
+    [dir="rtl"] .header-actions {
+      flex-direction: row-reverse;
+    }
+    [dir="rtl"] nav.main-nav {
+      flex-direction: row-reverse;
+    }
+    [dir="rtl"] .lang-menu-list {
+      right: auto;
+      left: 0;
+      text-align: right;
+    }
+    [dir="rtl"] .lang-opt-btn {
+      text-align: right;
+      flex-direction: row-reverse;
+      justify-content: flex-end;
+    }
+    [dir="rtl"] .hero-lead-text, [dir="rtl"] .tab-lead-text, [dir="rtl"] .hic-step-label {
+      text-align: right;
+    }
+    [dir="rtl"] .hic-opt-btn {
+      flex-direction: row-reverse;
+      text-align: right;
+    }
+    [dir="rtl"] .step-item-side {
+      flex-direction: row-reverse;
+      text-align: right;
+    }
+    [dir="rtl"] .vp-item {
+      flex-direction: row-reverse;
+      text-align: right;
+    }
+    [dir="rtl"] .hq-card {
+      flex-direction: row-reverse;
+      text-align: right;
+    }
+    [dir="rtl"] .faq-header-btn {
+      flex-direction: row-reverse;
+      text-align: right;
+    }
+    [dir="rtl"] .faq-search-input {
+      padding: 1.1rem 3.4rem 1.1rem 1.4rem;
+      text-align: right;
+    }
+    [dir="rtl"] .faq-search-icon {
+      left: auto;
+      right: 1.3rem;
+    }
+    [dir="rtl"] .whatsapp-widget-container {
+      right: auto;
+      left: 2rem;
+      align-items: flex-start;
+    }
+    [dir="rtl"] .wa-bubble-popup {
+      border-radius: 16px 16px 16px 4px;
+      flex-direction: row-reverse;
+      text-align: right;
+    }
+
   </style>
+  <script src="translations.js"></script>
 </head>
 <body>
 
@@ -1754,8 +1897,8 @@
   <div class="top-bar-spain">
     <div class="top-bar-left">
       <span class="flag-pill"><span></span><span></span><span></span></span>
-      <span>Despacho Jurídico Colegiado en España · ICAM Madrid & ICALI Alicante</span>
-      <span class="status-pulse"><span class="pulse-dot"></span> Despacho Activo</span>
+      <span data-i18n="topbar_badge">Despacho Jurídico Colegiado en España · ICAM Madrid & ICALI Alicante</span>
+      <span class="status-pulse"><span class="pulse-dot"></span> <span data-i18n="topbar_active">Despacho Activo</span></span>
     </div>
     <div class="top-bar-right">
       <a href="https://wa.me/34661682220?text=Hola,%20quisiera%20asesoría%20sobre%20trámites%20en%20España" target="_blank" rel="noopener">
@@ -1764,7 +1907,7 @@
       <a href="mailto:extranjeria@lexnovaiberia.es">
         <span>✉️ extranjeria@lexnovaiberia.es</span>
       </a>
-      <span>🏛️ Cita Previa Obligatoria</span>
+      <span data-i18n="topbar_appointment">🏛️ Cita Previa Obligatoria</span>
     </div>
   </div>
 
@@ -1777,19 +1920,38 @@
       </a>
 
       <nav class="main-nav" id="mainNav">
-        <a href="#procedimientos" class="active" onclick="navToTab('tab-canjes', event)">Procedimientos</a>
-        <a href="#canje-dgt" onclick="navToTab('tab-canjes', event)">Canje DGT</a>
-        <a href="#nacionalidad" onclick="navToTab('tab-nacionalidad', event)">Nacionalidad</a>
-        <a href="#extranjeria-tab" onclick="navToTab('tab-extranjeria', event)">Residencias</a>
-        <a href="#video-lexnova" onclick="closeNavMobile()">Vídeo Oficial</a>
-        <a href="#despachos" onclick="closeNavMobile()">Sedes y Despacho</a>
-        <a href="#faq" onclick="closeNavMobile()">Preguntas Frecuentes</a>
+        <a href="#procedimientos" class="active" onclick="navToTab('tab-canjes', event)" data-i18n="nav_procedures">Procedimientos</a>
+        <a href="#canje-dgt" onclick="navToTab('tab-canjes', event)" data-i18n="nav_canje">Canje DGT</a>
+        <a href="#nacionalidad" onclick="navToTab('tab-nacionalidad', event)" data-i18n="nav_nacionalidad">Nacionalidad</a>
+        <a href="#extranjeria-tab" onclick="navToTab('tab-extranjeria', event)" data-i18n="nav_residencias">Residencias</a>
+        <a href="#video-lexnova" onclick="closeNavMobile()" data-i18n="nav_video">Vídeo Oficial</a>
+        <a href="#despachos" onclick="closeNavMobile()" data-i18n="nav_sedes">Sedes y Despacho</a>
+        <a href="#faq" onclick="closeNavMobile()" data-i18n="nav_faq">Preguntas Frecuentes</a>
       </nav>
 
       <div class="header-actions">
+        <!-- SELECTOR DE IDIOMAS MULTILENGUAJE -->
+        <div class="lang-selector-dropdown">
+          <button type="button" class="lang-current-btn" onclick="toggleLangMenu()" id="langCurrentBtn" aria-label="Cambiar idioma">
+            <span class="lang-flag" id="currentLangFlag">🇪🇸</span>
+            <span class="lang-code" id="currentLangCode">ES</span>
+            <span class="lang-arrow">▾</span>
+          </button>
+          <div class="lang-menu-list" id="langMenuList">
+            <button type="button" class="lang-opt-btn active" data-lang="es" onclick="setLanguage('es')"><span class="opt-flag">🇪🇸</span> Español (ES)</button>
+            <button type="button" class="lang-opt-btn" data-lang="en" onclick="setLanguage('en')"><span class="opt-flag">🇬🇧</span> English (EN)</button>
+            <button type="button" class="lang-opt-btn" data-lang="de" onclick="setLanguage('de')"><span class="opt-flag">🇩🇪</span> Deutsch (DE)</button>
+            <button type="button" class="lang-opt-btn" data-lang="fr" onclick="setLanguage('fr')"><span class="opt-flag">🇫🇷</span> Français (FR)</button>
+            <button type="button" class="lang-opt-btn" data-lang="it" onclick="setLanguage('it')"><span class="opt-flag">🇮🇹</span> Italiano (IT)</button>
+            <button type="button" class="lang-opt-btn" data-lang="ar" onclick="setLanguage('ar')"><span class="opt-flag">🇸🇦</span> العربية (AR)</button>
+            <button type="button" class="lang-opt-btn" data-lang="ru" onclick="setLanguage('ru')"><span class="opt-flag">🇷🇺</span> Русский (RU)</button>
+            <button type="button" class="lang-opt-btn" data-lang="uk" onclick="setLanguage('uk')"><span class="opt-flag">🇺🇦</span> Українська (UK)</button>
+          </div>
+        </div>
+
         <a href="https://wa.me/34661682220?text=Hola,%20deseo%20una%20valoración%20de%20mi%20caso%20con%20Lexnova%20Iberia" target="_blank" class="btn-header-wa" rel="noopener">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
-          Consulta por WhatsApp
+          <span data-i18n="nav_whatsapp_btn">Consulta por WhatsApp</span>
         </a>
         <button class="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Abrir Menú">☰</button>
       </div>
@@ -1800,26 +1962,26 @@
   <div class="quick-selector-bar">
     <div class="quick-selector-inner">
       <div class="qs-label">
-        <span>⚡ Acceso directo a tu trámite:</span>
+        <span data-i18n="qs_label">⚡ Acceso directo a tu trámite:</span>
       </div>
       <div class="qs-pills-group">
         <button class="qs-pill-btn badge-highlight" onclick="quickSelectProcedure('tab-canjes')">
-          🚗 Canjear Licencia DGT
+          <span data-i18n="qs_canje">🚗 Canjear Licencia DGT</span>
         </button>
         <button class="qs-pill-btn" onclick="quickSelectProcedure('tab-nacionalidad')">
-          🇪🇸 Nacionalidad Española
+          <span data-i18n="qs_nacionalidad">🇪🇸 Nacionalidad Española</span>
         </button>
         <button class="qs-pill-btn" onclick="quickSelectProcedure('tab-extranjeria')">
-          📄 Arraigo & Residencia
+          <span data-i18n="qs_residencias">📄 Arraigo & Residencia</span>
         </button>
         <button class="qs-pill-btn" onclick="quickSelectProcedure('tab-antecedentes')">
-          ⚖️ Borrar Antecedentes
+          <span data-i18n="qs_antecedentes">⚖️ Borrar Antecedentes</span>
         </button>
         <button class="qs-pill-btn" onclick="quickSelectProcedure('tab-gestiones')">
-          🏛️ Citas TIE & Apostillas
+          <span data-i18n="qs_gestiones">🏛️ Citas TIE & Apostillas</span>
         </button>
         <a href="#video-lexnova" class="qs-pill-btn">
-          ▶ Ver Vídeo (0:50s)
+          <span data-i18n="qs_video">▶ Ver Vídeo (0:50s)</span>
         </a>
       </div>
     </div>
@@ -1831,38 +1993,38 @@
     <div class="hero-grid">
       <div class="hero-text-col">
         <div class="hero-badge-tag">
-          <span>⚖️ Despacho Especializado · Madrid & Alicante · Toda España</span>
+          <span data-i18n="hero_tag">⚖️ Despacho Especializado · Madrid & Alicante · Toda España</span>
         </div>
-        <h1 class="hero-main-title">
+        <h1 class="hero-main-title" data-i18n-html="hero_main_title">
           Tu futuro legal en España,<br>
           <span class="gradient-text">resuelto con excelencia</span> y <em>sin rodeos</em>
         </h1>
-        <p class="hero-lead-text">
+        <p class="hero-lead-text" data-i18n-html="hero_lead">
           Gestionamos tu <strong>Nacionalidad Española</strong>, <strong>Canje de Licencia de Conducir DGT</strong>, autorizaciones de <strong>Residencia y Arraigo</strong> y <strong>Cancelación de Antecedentes</strong>. 100% telemático para solicitantes en toda España y presencial con cita en Madrid y Alicante.
         </p>
 
         <div class="hero-actions-cluster">
           <a href="https://wa.me/34661682220?text=Hola,%20quisiera%20iniciar%20un%20trámite%20legal%20en%20España%20con%20Lexnova" target="_blank" class="btn-hero-primary" rel="noopener">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0012.04 2zm5.79 14.15c-.24.67-1.39 1.29-1.93 1.37-.5.08-1.13.11-1.83-.11-.42-.13-.96-.31-1.66-.61-2.92-1.26-4.81-4.22-4.96-4.42-.15-.2-1.2-1.6-1.2-3.05 0-1.45.76-2.16 1.03-2.45.27-.29.59-.36.79-.36.2 0 .4 0 .57.01.18.01.42-.07.66.5.24.58.82 2.01.89 2.16.07.15.12.33.02.53-.1.2-.15.32-.3.49-.15.17-.31.38-.44.51-.15.15-.3.31-.13.6.17.29.76 1.26 1.63 2.03 1.12.99 2.06 1.3 2.35 1.45.29.15.46.13.63-.07.17-.2.73-.85.92-1.14.2-.29.39-.24.66-.14.27.1 1.72.81 2.02.96.29.15.49.22.56.34.07.12.07.7-.17 1.37z"/></svg>
-            Consultar Mi Trámite por WhatsApp
+            <span data-i18n="hero_btn_wa">Consultar Mi Trámite por WhatsApp</span>
           </a>
           <a href="#procedimientos" class="btn-hero-secondary">
-            Ver Requisitos de Trámites ↓
+            <span data-i18n="hero_btn_req">Ver Requisitos de Trámites ↓</span>
           </a>
         </div>
 
         <div class="hero-badges-row">
           <div class="h-badge-chip">
             <span class="icon">🏛️</span>
-            <span>Registro Telemático Oficial (Red SARA)</span>
+            <span data-i18n="hero_b1">Registro Telemático Oficial (Red SARA)</span>
           </div>
           <div class="h-badge-chip">
             <span class="icon">🚗</span>
-            <span>Canje DGT Sin Desplazamientos</span>
+            <span data-i18n="hero_b2">Canje DGT Sin Desplazamientos</span>
           </div>
           <div class="h-badge-chip">
             <span class="icon">🇪🇸</span>
-            <span>Atención en las 17 Comunidades</span>
+            <span data-i18n="hero_b3">Atención en las 17 Comunidades</span>
           </div>
         </div>
       </div>
@@ -1871,29 +2033,29 @@
       <div class="hero-interactive-card">
         <div class="hic-header">
           <div class="hic-title-group">
-            <h3>Asistente Rápido de Trámite</h3>
-            <p>Descubre tu vía legal en 1 clic</p>
+            <h3 data-i18n="wiz_title">Asistente Rápido de Trámite</h3>
+            <p data-i18n="wiz_sub">Descubre tu vía legal en 1 clic</p>
           </div>
-          <span class="live-dot-tag">En Línea</span>
+          <span class="live-dot-tag" data-i18n="wiz_live">En Línea</span>
         </div>
 
-        <div class="hic-step-label">¿Qué gestión necesitas realizar en España?</div>
+        <div class="hic-step-label" data-i18n="wiz_prompt">¿Qué gestión necesitas realizar en España?</div>
 
         <div class="hic-options-grid">
           <button type="button" class="hic-opt-btn active" onclick="setHeroWizard(1, this)">
-            <span><span class="opt-icon">🚗</span> Canjear mi carnet de conducir (DGT)</span>
+            <span><span class="opt-icon">🚗</span> <span data-i18n="wiz_opt1">Canjear mi carnet de conducir (DGT)</span></span>
             <span class="opt-arrow">→</span>
           </button>
           <button type="button" class="hic-opt-btn" onclick="setHeroWizard(2, this)">
-            <span><span class="opt-icon">🇪🇸</span> Obtener la Nacionalidad Española</span>
+            <span><span class="opt-icon">🇪🇸</span> <span data-i18n="wiz_opt2">Obtener la Nacionalidad Española</span></span>
             <span class="opt-arrow">→</span>
           </button>
           <button type="button" class="hic-opt-btn" onclick="setHeroWizard(3, this)">
-            <span><span class="opt-icon">📄</span> Solicitar Residencia o Arraigo</span>
+            <span><span class="opt-icon">📄</span> <span data-i18n="wiz_opt3">Solicitar Residencia o Arraigo</span></span>
             <span class="opt-arrow">→</span>
           </button>
           <button type="button" class="hic-opt-btn" onclick="setHeroWizard(4, this)">
-            <span><span class="opt-icon">⚖️</span> Cancelar Antecedentes / Documentos</span>
+            <span><span class="opt-icon">⚖️</span> <span data-i18n="wiz_opt4">Cancelar Antecedentes / Documentos</span></span>
             <span class="opt-arrow">→</span>
           </button>
         </div>
@@ -1903,7 +2065,7 @@
         </div>
 
         <button type="button" class="btn-hic-submit" id="btnHicAction" onclick="submitHeroWizard()">
-          <span>Comenzar Este Trámite por WhatsApp ↗</span>
+          <span data-i18n="wiz_btn">Comenzar Este Trámite por WhatsApp ↗</span>
         </button>
       </div>
     </div>
@@ -1914,19 +2076,19 @@
     <div class="trust-container">
       <div class="trust-item">
         <div class="trust-num">+1.800</div>
-        <div class="trust-label">Expedientes Gestionados</div>
+        <div class="trust-label" data-i18n="trust_lbl1">Expedientes Gestionados</div>
       </div>
       <div class="trust-item">
         <div class="trust-num">98.6<span>%</span></div>
-        <div class="trust-label">Resoluciones Favorables</div>
+        <div class="trust-label" data-i18n="trust_lbl2">Resoluciones Favorables</div>
       </div>
       <div class="trust-item">
         <div class="trust-num">100<span>%</span></div>
-        <div class="trust-label">Gestión Online Sin Colas</div>
+        <div class="trust-label" data-i18n="trust_lbl3">Gestión Online Sin Colas</div>
       </div>
       <div class="trust-item">
         <div class="trust-num">&lt;24<span>h</span></div>
-        <div class="trust-label">Respuesta Inicial Garantizada</div>
+        <div class="trust-label" data-i18n="trust_lbl4">Respuesta Inicial Garantizada</div>
       </div>
     </div>
   </div>
@@ -1935,27 +2097,27 @@
   <section class="content-section" id="procedimientos">
     <div class="section-wrap">
       <div class="section-header-center">
-        <div class="section-eyebrow">Áreas de Especialización</div>
-        <h2 class="section-heading">Cada procedimiento con la estrategia jurídica precisa</h2>
-        <p class="section-desc">Selecciona tu trámite a continuación para conocer el detalle de nuestros servicios, requisitos indispensables y metodología de trabajo transparente.</p>
+        <div class="section-eyebrow" data-i18n="tabs_eyebrow">Áreas de Especialización</div>
+        <h2 class="section-heading" data-i18n="tabs_heading">Cada procedimiento con la estrategia jurídica precisa</h2>
+        <p class="section-desc" data-i18n="tabs_desc">Selecciona tu trámite a continuación para conocer el detalle de nuestros servicios, requisitos indispensables y metodología de trabajo transparente.</p>
       </div>
 
       <!-- BOTONES DE PESTAÑAS -->
       <div class="campaign-tabs-nav" role="tablist">
         <button class="tab-btn active" onclick="switchCampaignTab('tab-canjes', this)" id="btn-tab-canjes">
-          <span class="tab-icon">🚗</span> Canjes de Licencia DGT
+          <span class="tab-icon">🚗</span> <span data-i18n="t_btn_canjes">Canjes de Licencia DGT</span>
         </button>
         <button class="tab-btn" onclick="switchCampaignTab('tab-nacionalidad', this)" id="btn-tab-nacionalidad">
-          <span class="tab-icon">🇪🇸</span> Nacionalidad Española
+          <span class="tab-icon">🇪🇸</span> <span data-i18n="t_btn_nacionalidad">Nacionalidad Española</span>
         </button>
         <button class="tab-btn" onclick="switchCampaignTab('tab-extranjeria', this)" id="btn-tab-extranjeria">
-          <span class="tab-icon">📄</span> Residencias & Arraigos
+          <span class="tab-icon">📄</span> <span data-i18n="t_btn_extranjeria">Residencias & Arraigos</span>
         </button>
         <button class="tab-btn" onclick="switchCampaignTab('tab-antecedentes', this)" id="btn-tab-antecedentes">
-          <span class="tab-icon">⚖️</span> Borrado de Antecedentes
+          <span class="tab-icon">⚖️</span> <span data-i18n="t_btn_antecedentes">Borrado de Antecedentes</span>
         </button>
         <button class="tab-btn" onclick="switchCampaignTab('tab-gestiones', this)" id="btn-tab-gestiones">
-          <span class="tab-icon">🏛️</span> Gestión de Documentos
+          <span class="tab-icon">🏛️</span> <span data-i18n="t_btn_gestiones">Gestión de Documentos</span>
         </button>
       </div>
 
@@ -1963,34 +2125,34 @@
       <div class="tab-pane active" id="tab-canjes">
         <div class="tab-layout-grid">
           <div class="tab-main-info">
-            <span class="section-eyebrow" style="margin-bottom:0.8rem;">Campaña C · DGT Oficial</span>
-            <h3>Canje de Licencia de Conducir en España</h3>
+            <span class="section-eyebrow" style="margin-bottom:0.8rem;" data-i18n="canje_eyebrow">Campaña C · DGT Oficial</span>
+            <h3 data-i18n="canje_title">Canje de Licencia de Conducir en España</h3>
             <p class="tab-lead-text">
-              ¿Tienes una licencia de conducir extranjera y quieres canjearla por el permiso de conducir español? En <strong>Lexnova Iberia Abogados</strong> gestionamos tu canje ante la Dirección General de Tráfico (DGT) de principio a fin, de forma 100% online y sin que tengas que acudir personalmente ni perder días en oficinas de tráfico.
+              ¿Tienes una licencia de conducir extranjera y quieres canjearla por el permiso de conducir español? En <strong>Lexnova Iberia</strong> gestionamos tu canje ante la Dirección General de Tráfico (DGT) de principio a fin, de forma 100% online y sin que tengas que acudir personalmente ni perder días en oficinas de tráfico.
             </p>
 
-            <div class="tab-subblock-title">⚙️ Servicios incluidos en tu trámite DGT</div>
+            <div class="tab-subblock-title" data-i18n="canje_sub">⚙️ Servicios incluidos en tu trámite DGT</div>
             <div class="tab-services-grid">
               <div class="tab-service-card">
-                <h4>Asesoría de Convenio</h4>
+                <h4 data-i18n="canje_s1_t">Asesoría de Convenio</h4>
                 <p>Comprobamos los acuerdos bilaterales de tu país con el Reino de España y la equivalencia de tus categorías.</p>
               </div>
               <div class="tab-service-card">
-                <h4>Revisión Documental</h4>
+                <h4 data-i18n="canje_s2_t">Revisión Documental</h4>
                 <p>Verificamos la vigencia, autenticidad y cotejo de tu permiso original antes de iniciar el registro.</p>
               </div>
               <div class="tab-service-card">
-                <h4>Preparación del Expediente</h4>
+                <h4 data-i18n="canje_s3_t">Preparación del Expediente</h4>
                 <p>Completamos los formularios oficiales de la DGT y liquidamos las tasas correspondientes.</p>
               </div>
               <div class="tab-service-card">
-                <h4>Seguimiento y Cita</h4>
+                <h4 data-i18n="canje_s4_t">Seguimiento y Cita</h4>
                 <p>Gestionamos la validación del expediente telemático hasta la entrega de tu permiso español.</p>
               </div>
             </div>
 
             <div class="tab-req-box">
-              <h4>📋 Requisitos básicos para el canje:</h4>
+              <h4 data-i18n="canje_req_t">📋 Requisitos básicos para el canje:</h4>
               <ul class="req-checklist">
                 <li><span class="req-check-icon">✓</span> Pasaporte, NIE o TIE vigente</li>
                 <li><span class="req-check-icon">✓</span> Licencia extranjera original y vigente</li>
@@ -2004,9 +2166,9 @@
             <!-- FORMULARIO INTERACTIVO DE VERIFICACIÓN DGT SOLICITADO EN EL DOCX -->
             <div class="dgt-verifier-box" id="canje-dgt">
               <div class="dgt-verifier-title">
-                <span>🚗</span> Verificador Inteligente de Canje DGT
+                <span>🚗</span> <span data-i18n="dgt_box_title">Verificador Inteligente de Canje DGT</span>
               </div>
-              <p class="dgt-verifier-sub">Haz clic en tu país frecuente o selecciónalo en el menú desplegable:</p>
+              <p class="dgt-verifier-sub" data-i18n="dgt_box_sub">Haz clic en tu país frecuente o selecciónalo en el menú desplegable:</p>
 
               <!-- Botones visuales de acceso rápido por bandera -->
               <div class="dgt-fast-countries">
@@ -2021,7 +2183,7 @@
               </div>
               
               <div class="dgt-form-group">
-                <label for="dgtCountry">O selecciona tu país de expedición:</label>
+                <label for="dgtCountry" data-i18n="dgt_lbl_country">O selecciona tu país de expedición:</label>
                 <select id="dgtCountry" onchange="checkDgtCountry()">
                   <option value="">-- Selecciona tu país --</option>
                   <option value="colombia">Colombia (Convenio Activo - Canje Directo)</option>
@@ -2047,24 +2209,24 @@
               <div id="dgtResultBox" class="dgt-result-box"></div>
 
               <div class="dgt-form-group">
-                <label for="dgtClientName">Tu Nombre Completo:</label>
+                <label for="dgtClientName" data-i18n="dgt_lbl_name">Tu Nombre Completo:</label>
                 <input type="text" id="dgtClientName" placeholder="Ej: Carlos Ramírez">
               </div>
 
               <div class="dgt-form-group">
-                <label for="dgtClientPhone">Teléfono o WhatsApp:</label>
+                <label for="dgtClientPhone" data-i18n="dgt_lbl_phone">Teléfono o WhatsApp:</label>
                 <input type="tel" id="dgtClientPhone" placeholder="Ej: +34 600 000 000">
               </div>
 
               <button type="button" class="btn-submit-dgt" onclick="submitDgtVerification()">
-                <span>Verificar y Tramitar Mi Canje con un Abogado ↗</span>
+                <span data-i18n="dgt_btn_submit">Verificar y Tramitar Mi Canje ↗</span>
               </button>
             </div>
           </div>
 
           <!-- Columna Lateral Cómo Trabajamos -->
           <div class="tab-side-box">
-            <h4>¡Tu canje en manos de profesionales!</h4>
+            <h4 data-i18n="canje_side_title">¡Tu canje en manos de profesionales!</h4>
             <p>Evita desplazamientos innecesarios a jefaturas provinciales, largas esperas y errores en la preparación de tu expediente ante la DGT.</p>
 
             <ul class="steps-list">
@@ -2087,7 +2249,7 @@
             </ul>
 
             <a href="https://wa.me/34661682220?text=Hola,%20quiero%20iniciar%20el%20canje%20de%20mi%20licencia%20de%20conducir%20en%20España" target="_blank" class="btn-tab-wa" rel="noopener">
-              Solicitar Valoración de Canje Gratuita
+              <span data-i18n="canje_side_btn">Solicitar Valoración de Canje Gratuita</span>
             </a>
           </div>
         </div>
@@ -2097,34 +2259,34 @@
       <div class="tab-pane" id="tab-nacionalidad">
         <div class="tab-layout-grid">
           <div class="tab-main-info">
-            <span class="section-eyebrow" style="margin-bottom:0.8rem;">Campaña A · Ministerio de Justicia</span>
-            <h3>Nacionalidad Española por Residencia</h3>
+            <span class="section-eyebrow" style="margin-bottom:0.8rem;" data-i18n="nac_eyebrow">Campaña A · Ministerio de Justicia</span>
+            <h3 data-i18n="nac_title">Nacionalidad Española por Residencia</h3>
             <p class="tab-lead-text">
               ¿Quieres obtener el pasaporte español y la nacionalidad? En <strong>Lexnova Iberia</strong> te acompañamos durante todo el procedimiento. Gestionamos tu solicitud telemática con firma digital colegiada, lo que acelera los tiempos de tramitación y reduce al mínimo el riesgo de requerimientos o denegaciones.
             </p>
 
-            <div class="tab-subblock-title">⚖️ Lo que incluye nuestro servicio de nacionalidad</div>
+            <div class="tab-subblock-title" data-i18n="nac_sub">⚖️ Lo que incluye nuestro servicio de nacionalidad</div>
             <div class="tab-services-grid">
               <div class="tab-service-card">
-                <h4>Tramitación y Estrategia</h4>
+                <h4 data-i18n="nac_s1_t">Tramitación y Estrategia</h4>
                 <p>Analizamos la vía de adquisición aplicable (2 años para iberoamericanos, 1 año por matrimonio, 10 años general).</p>
               </div>
               <div class="tab-service-card">
-                <h4>Auditoría del Expediente</h4>
+                <h4 data-i18n="nac_s2_t">Auditoría del Expediente</h4>
                 <p>Revisamos certificados de nacimiento, antecedentes y vigencia de pasaportes con exhaustividad.</p>
               </div>
               <div class="tab-service-card">
-                <h4>Presentación Telemática</h4>
+                <h4 data-i18n="nac_s3_t">Presentación Telemática</h4>
                 <p>Registro oficial en la plataforma del Ministerio de Justicia con certificado de abogado colegiado.</p>
               </div>
               <div class="tab-service-card">
-                <h4>Exámenes CCSE y DELE</h4>
+                <h4 data-i18n="nac_s4_t">Exámenes CCSE y DELE</h4>
                 <p>Te orientamos sobre las pruebas del Instituto Cervantes y exenciones por escolarización.</p>
               </div>
             </div>
 
             <div class="tab-req-box">
-              <h4>📋 ¿Qué necesitas de manera general?</h4>
+              <h4 data-i18n="nac_req_t">📋 ¿Qué necesitas de manera general?</h4>
               <ul class="req-checklist">
                 <li><span class="req-check-icon">✓</span> NIE / TIE en vigor</li>
                 <li><span class="req-check-icon">✓</span> Pasaporte completo y vigente</li>
@@ -2141,7 +2303,7 @@
           </div>
 
           <div class="tab-side-box">
-            <h4>¡Todo desde la comodidad de tu hogar!</h4>
+            <h4 data-i18n="nac_side_title">¡Todo desde la comodidad de tu hogar!</h4>
             <p>Atención telemática para solicitantes residentes en cualquier Comunidad Autónoma de España.</p>
 
             <ul class="steps-list">
@@ -2164,7 +2326,7 @@
             </ul>
 
             <a href="https://wa.me/34661682220?text=Hola,%20quiero%20iniciar%20mi%20trámite%20de%20Nacionalidad%20Española" target="_blank" class="btn-tab-wa" rel="noopener">
-              Consultar Mi Nacionalidad Hoy
+              <span data-i18n="nac_side_btn">Consultar Mi Nacionalidad Hoy</span>
             </a>
           </div>
         </div>
@@ -2385,8 +2547,8 @@
     <div class="section-wrap">
       <div class="video-grid">
         <div class="video-text-col">
-          <div class="section-eyebrow">Vídeo Corporativo Lexnova</div>
-          <h2>Conoce de cerca <em>nuestro compromiso legal</em></h2>
+          <div class="section-eyebrow" data-i18n="vid_eyebrow">Vídeo Corporativo Lexnova</div>
+          <h2 data-i18n-html="vid_title">Conoce de cerca <em>nuestro compromiso legal</em></h2>
           <p>
             En Lexnova Iberia combinamos la cercanía del trato humano con la máxima solvencia jurídica. Mira nuestro vídeo institucional y descubre cómo trabajamos para que tu regularización, nacionalidad o canje sea una experiencia ágil, transparente y segura.
           </p>
@@ -2407,7 +2569,7 @@
           </ul>
 
           <a href="https://wa.me/34661682220?text=Hola,%20he%20visto%20el%20vídeo%20y%20quisiera%20asesorarme%20con%20vosotros" target="_blank" class="btn-hero-primary" rel="noopener">
-            Hablar Directamente con el Despacho ↗
+            <span data-i18n="vid_btn">Hablar Directamente con el Despacho ↗</span>
           </a>
         </div>
 
@@ -2422,7 +2584,7 @@
               </video>
               <div class="video-overlay-play" id="videoPlayOverlay" onclick="togglePlayVideo()">
                 <div class="play-btn-circle">▶</div>
-                <div class="play-caption">Ver Vídeo Lexnova</div>
+                <div class="play-caption" data-i18n="vid_play">Ver Vídeo Lexnova</div>
               </div>
             </div>
           </div>
@@ -2435,18 +2597,18 @@
   <section class="content-section offices-section" id="despachos">
     <div class="section-wrap">
       <div class="section-header-center" style="margin-bottom:2.2rem;">
-        <div class="section-eyebrow">Presencia Real en España</div>
-        <h2 class="section-heading">Sedes Físicas & Despacho Jurídico</h2>
-        <p class="section-desc">Instalaciones preparadas para atención presencial con cita previa y cobertura telemática a toda España.</p>
+        <div class="section-eyebrow" data-i18n="off_eyebrow">Presencia Real en España</div>
+        <h2 class="section-heading" data-i18n="off_heading">Sedes Físicas & Despacho Jurídico</h2>
+        <p class="section-desc" data-i18n="off_sub">Instalaciones preparadas para atención presencial con cita previa y cobertura telemática a toda España.</p>
       </div>
 
       <!-- SELECTOR INTERACTIVO DE SEDES -->
       <div class="office-switch-nav">
         <button type="button" class="office-tab-btn active" onclick="switchOfficeTab('alicante', this)">
-          <span>🏢 Sede Alicante (Despacho Principal)</span>
+          <span data-i18n="off_tab_ali">🏢 Sede Alicante (Despacho Principal)</span>
         </button>
         <button type="button" class="office-tab-btn" onclick="switchOfficeTab('madrid', this)">
-          <span>🏛️ Sede Madrid (P.º de la Castellana)</span>
+          <span data-i18n="off_tab_mad">🏛️ Sede Madrid (P.º de la Castellana)</span>
         </button>
       </div>
 
@@ -2486,7 +2648,7 @@
           </div>
 
           <a href="https://wa.me/34661682220?text=Hola,%20quisiera%20agendar%20una%20cita%20previa%20en%20el%20despacho" target="_blank" class="btn-hero-primary" style="font-size:0.95rem;padding:0.85rem 1.8rem;" rel="noopener">
-            Reservar Cita Previa en el Despacho
+            <span data-i18n="off_btn_book">Reservar Cita Previa en el Despacho</span>
           </a>
         </div>
       </div>
@@ -2497,9 +2659,9 @@
   <section class="content-section faq-section-adv" id="faq">
     <div class="section-wrap">
       <div class="section-header-center">
-        <div class="section-eyebrow">Resolución de Dudas</div>
-        <h2 class="section-heading">Preguntas Frecuentes Mejoradas</h2>
-        <p class="section-desc">Encuentra respuestas claras y fundamentadas en la legislación española. Utiliza el buscador o filtra por área.</p>
+        <div class="section-eyebrow" data-i18n="faq_eyebrow">Resolución de Dudas</div>
+        <h2 class="section-heading" data-i18n="faq_heading">Preguntas Frecuentes Mejoradas</h2>
+        <p class="section-desc" data-i18n="faq_desc">Encuentra respuestas claras y fundamentadas en la legislación española. Utiliza el buscador o filtra por área.</p>
       </div>
 
       <!-- Buscador en tiempo real -->
@@ -2510,7 +2672,7 @@
 
       <!-- Tags rápidos de búsqueda -->
       <div class="faq-quick-tags">
-        <span class="label">Búsquedas populares:</span>
+        <span class="label" data-i18n="faq_pop_label">Búsquedas populares:</span>
         <button type="button" class="faq-tag-pill" onclick="applyFaqTag('canje')">🚗 Canje sin examen</button>
         <button type="button" class="faq-tag-pill" onclick="applyFaqTag('nacionalidad')">🇪🇸 Plazos nacionalidad</button>
         <button type="button" class="faq-tag-pill" onclick="applyFaqTag('arraigo')">📄 Tipos de arraigo</button>
@@ -2520,11 +2682,11 @@
 
       <!-- Filtros por categoría -->
       <div class="faq-cat-filter">
-        <button class="faq-filter-btn active" onclick="filterFaqCategory('all', this)">Todas las Preguntas</button>
-        <button class="faq-filter-btn" onclick="filterFaqCategory('canje', this)">Canje DGT</button>
-        <button class="faq-filter-btn" onclick="filterFaqCategory('nacionalidad', this)">Nacionalidad Española</button>
-        <button class="faq-filter-btn" onclick="filterFaqCategory('extranjeria', this)">Residencias & Arraigos</button>
-        <button class="faq-filter-btn" onclick="filterFaqCategory('antecedentes', this)">Antecedentes & Gestiones</button>
+        <button class="faq-filter-btn active" onclick="filterFaqCategory('all', this)" data-i18n="faq_cat_all">Todas las Preguntas</button>
+        <button class="faq-filter-btn" onclick="filterFaqCategory('canje', this)" data-i18n="faq_cat_canje">Canje DGT</button>
+        <button class="faq-filter-btn" onclick="filterFaqCategory('nacionalidad', this)" data-i18n="faq_cat_nac">Nacionalidad Española</button>
+        <button class="faq-filter-btn" onclick="filterFaqCategory('extranjeria', this)" data-i18n="faq_cat_res">Residencias & Arraigos</button>
+        <button class="faq-filter-btn" onclick="filterFaqCategory('antecedentes', this)" data-i18n="faq_cat_ant">Antecedentes & Gestiones</button>
       </div>
 
       <!-- Acordeón de FAQs -->
@@ -2649,9 +2811,9 @@
       </div>
 
       <div style="text-align:center;margin-top:3.5rem;">
-        <p style="font-size:1.05rem;color:var(--text-muted);margin-bottom:1.2rem;">¿Tienes una duda específica sobre tu caso particular?</p>
+        <p style="font-size:1.05rem;color:var(--text-muted);margin-bottom:1.2rem;" data-i18n="faq_help_prompt">¿Tienes una duda específica sobre tu caso particular?</p>
         <a href="https://wa.me/34661682220?text=Hola,%20tengo%20una%20pregunta%20específica%20sobre%20mi%20trámite%20en%20España" target="_blank" class="btn-hero-primary" style="font-size:0.95rem;padding:0.9rem 2rem;" rel="noopener">
-          Preguntar a un Abogado por WhatsApp ↗
+          <span data-i18n="faq_help_btn">Preguntar a un Asesor por WhatsApp ↗</span>
         </a>
       </div>
     </div>
@@ -2660,16 +2822,16 @@
   <!-- CTA FINAL -->
   <section class="cta-final-spain">
     <div class="cta-inner-spain">
-      <div class="section-eyebrow" style="background:rgba(241,191,0,0.15);color:var(--gold-light);border-color:rgba(241,191,0,0.3);">
+      <div class="section-eyebrow" style="background:rgba(241,191,0,0.15);color:var(--gold-light);border-color:rgba(241,191,0,0.3);" data-i18n="cta_eyebrow">
         Atención a Toda España
       </div>
-      <h2>Tu tranquilidad legal en España<br><em>comienza con una buena orientación</em></h2>
+      <h2 data-i18n-html="cta_heading">Tu tranquilidad legal en España<br><em>comienza con una buena orientación</em></h2>
       <p>
         Evita denegaciones, demoras innecesarias y pérdida de plazos. Contacta con nosotros hoy mismo y un letrado de Lexnova Iberia valorará la viabilidad de tu procedimiento sin compromiso.
       </p>
       <div style="display:flex;justify-content:center;gap:1.2rem;flex-wrap:wrap;">
         <a href="https://wa.me/34661682220?text=Hola,%20quiero%20iniciar%20mi%20procedimiento%20con%20Lexnova%20Iberia" target="_blank" class="btn-hero-primary" style="font-size:1.1rem;padding:1.1rem 2.4rem;" rel="noopener">
-          Iniciar Trámite por WhatsApp — 661 682 220
+          <span data-i18n="cta_btn">Iniciar Trámite por WhatsApp — 661 682 220</span>
         </a>
       </div>
     </div>
@@ -2754,8 +2916,8 @@
     <div class="wa-bubble-popup" onclick="openWhatsAppDirect()">
       <div class="wa-avatar">⚖️</div>
       <div class="wa-bubble-text">
-        <strong>¿Tienes dudas sobre tu caso?</strong>
-        <span>Abogados en línea · Respuesta inmediata</span>
+        <strong data-i18n="wa_popup_strong">¿Tienes dudas sobre tu caso?</strong>
+        <span data-i18n="wa_popup_span">Asesores en línea · Respuesta inmediata</span>
       </div>
     </div>
     <a href="https://wa.me/34661682220?text=Hola,%20quiero%20información%20sobre%20los%20servicios%20de%20Lexnova%20Iberia" target="_blank" class="whatsapp-float-spain" title="Chatea por WhatsApp con Lexnova Iberia" rel="noopener">
@@ -2793,19 +2955,32 @@
     };
 
     function setHeroWizard(step, btn) {
-      currentWizardStep = step;
-      document.querySelectorAll('.hic-opt-btn').forEach(b => b.classList.remove('active'));
-      if (btn) btn.classList.add('active');
+      currentWizardStep = step || currentWizardStep || 1;
+      const buttons = document.querySelectorAll('.hic-opt-btn');
+      buttons.forEach((b, idx) => {
+        if (btn) {
+          b.classList.toggle('active', b === btn);
+        } else {
+          b.classList.toggle('active', (idx + 1) === currentWizardStep);
+        }
+      });
       
       const resBox = document.getElementById('hicResultBox');
-      if (wizardData[step]) {
-        resBox.innerHTML = wizardData[step].text;
+      const lang = window.currentAppLang || 'es';
+      const dict = (window.I18N_DATA && window.I18N_DATA[lang]) ? window.I18N_DATA[lang] : (window.I18N_DATA ? window.I18N_DATA['es'] : null);
+      if (resBox && dict && dict['wiz_res' + currentWizardStep]) {
+        resBox.innerHTML = dict['wiz_res' + currentWizardStep];
+      } else if (resBox && wizardData[currentWizardStep]) {
+        resBox.innerHTML = wizardData[currentWizardStep].text;
       }
     }
 
     function submitHeroWizard() {
-      const data = wizardData[currentWizardStep] || wizardData[1];
-      const encoded = encodeURIComponent(data.waMsg);
+      const step = currentWizardStep || 1;
+      const lang = window.currentAppLang || 'es';
+      const dict = (window.I18N_DATA && window.I18N_DATA[lang]) ? window.I18N_DATA[lang] : (window.I18N_DATA ? window.I18N_DATA['es'] : null);
+      let msg = (dict && dict['wiz_wa' + step]) ? dict['wiz_wa' + step] : (wizardData[step] ? wizardData[step].waMsg : "Hola Lexnova Iberia");
+      const encoded = encodeURIComponent(msg);
       window.open(`https://wa.me/34661682220?text=${encoded}`, '_blank');
     }
 
@@ -2919,7 +3094,7 @@
         resBox.innerHTML = `<strong>✅ ¡Convenio Bilateral en Vigor!</strong><br>El Reino de España tiene convenio de canje directo con tu país ante la DGT. Cumpliendo los requisitos de antigüedad y residencia legal, puedes canjear tu carnet sin examen práctico.`;
       } else if (country === 'venezuela') {
         resBox.className = 'dgt-result-box convenio-requisitos';
-        resBox.innerHTML = `<strong>ℹ️ Protocolo Especial DGT para Venezuela:</strong><br>Existe protocolo de verificación consular. Nuestros abogados comprobarán si tu formato cumple las exigencias actuales de la DGT para iniciar el trámite.`;
+        resBox.innerHTML = `<strong>ℹ️ Protocolo Especial DGT para Venezuela:</strong><br>Existe protocolo de verificación consular. Nuestros asesores comprobarán si tu formato cumple las exigencias actuales de la DGT para iniciar el trámite.`;
       } else {
         resBox.className = 'dgt-result-box sin-convenio';
         resBox.innerHTML = `<strong>⚠️ Consulta de Viabilidad Específica:</strong><br>Tu país no cuenta con convenio de canje automático o requiere prueba teórica/práctica de equivalencia. Consulta con nuestro equipo para evaluar alternativas legales.`;
@@ -3065,6 +3240,94 @@
         nav.style.boxShadow = '0 10px 25px rgba(0,0,0,0.4)';
       }
     }
+
+    // ── GESTIÓN DE IDIOMAS MULTILENGUAJE ──
+    let currentAppLang = 'es';
+
+    function toggleLangMenu() {
+      const menu = document.getElementById('langMenuList');
+      if (menu) {
+        menu.classList.toggle('show');
+      }
+    }
+
+    // Cerrar el menú si se hace clic fuera
+    document.addEventListener('click', function(e) {
+      const dropdown = document.querySelector('.lang-selector-dropdown');
+      const menu = document.getElementById('langMenuList');
+      if (dropdown && menu && !dropdown.contains(e.target)) {
+        menu.classList.remove('show');
+      }
+    });
+
+    function setLanguage(lang) {
+      const data = window.I18N_DATA || (typeof I18N_DATA !== 'undefined' ? I18N_DATA : null);
+      if (!data || !data[lang]) return;
+      currentAppLang = lang;
+      const dict = data[lang];
+
+      // Cambiar dirección y lenguaje de la página
+      document.documentElement.lang = lang;
+      document.documentElement.dir = dict.dir || 'ltr';
+
+      // Actualizar botón del selector
+      const flagEl = document.getElementById('currentLangFlag');
+      const codeEl = document.getElementById('currentLangCode');
+      if (flagEl) flagEl.textContent = dict.flag;
+      if (codeEl) codeEl.textContent = lang.toUpperCase();
+
+      // Actualizar opción activa
+      document.querySelectorAll('.lang-opt-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
+      });
+
+      // Traducir elementos con data-i18n
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (dict[key]) {
+          el.textContent = dict[key];
+        }
+      });
+
+      // Traducir elementos con data-i18n-html
+      document.querySelectorAll('[data-i18n-html]').forEach(el => {
+        const key = el.getAttribute('data-i18n-html');
+        if (dict[key]) {
+          el.innerHTML = dict[key];
+        }
+      });
+
+      // Traducir placeholders
+      const searchInp = document.getElementById('faqSearchInput');
+      if (searchInp && dict['faq_placeholder']) {
+        searchInp.setAttribute('placeholder', dict['faq_placeholder']);
+      }
+
+      // Cerrar menú
+      const menu = document.getElementById('langMenuList');
+      if (menu) menu.classList.remove('show');
+
+      // Actualizar textos en el asistente
+      setHeroWizard(currentWizardStep);
+
+      // Guardar en almacenamiento local
+      try {
+        localStorage.setItem('lexnova_lang', lang);
+      } catch (e) {}
+    }
+
+    // Inicializar idioma al cargar
+    window.addEventListener('DOMContentLoaded', function() {
+      let saved = 'es';
+      try {
+        saved = localStorage.getItem('lexnova_lang') || 'es';
+      } catch (e) {}
+      const data = window.I18N_DATA || (typeof I18N_DATA !== 'undefined' ? I18N_DATA : null);
+      if (data && data[saved]) {
+        setLanguage(saved);
+      }
+    });
+
   </script>
 </body>
 </html>
